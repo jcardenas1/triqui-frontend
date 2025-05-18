@@ -1,0 +1,8 @@
+services:
+  frontend:
+    image: juanc/frontendtriqui:v0.1
+    build:
+      context: ./triqui
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
