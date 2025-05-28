@@ -3,16 +3,15 @@ import { State } from "./State";
 
 export class DrawState extends State {
     public handleEvent(
-        setValues: { [key: string]:  React.Dispatch<React.SetStateAction<any>>},
+        setValues: { [key: string]:  React.RefObject<any>},
         data: GameState, 
     ): void {
-        console.log("Handle draw event")
-        const setBoard = setValues['setBoard']
-        const setStatus = setValues['setStatus']
-        const setGameEnded = setValues['setGameEnded']
+        const boardRef = setValues['boardRef']
+        const statusRef = setValues['statusRef']
+        const gameEndedRef = setValues['gameEndedRef']
 
-        setBoard(data.board);
-        setStatus('Empate');
-        setGameEnded(true);
+        boardRef.current = data.board;
+        statusRef.current = 'Empate';
+        gameEndedRef.current = true;
     }
 }

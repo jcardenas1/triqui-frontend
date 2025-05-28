@@ -3,21 +3,18 @@ import { State } from "./State";
 
 export class WinState extends State {
     public handleEvent(
-        setValues: { [key: string]:  React.Dispatch<React.SetStateAction<any>>},
+        setValues: { [key: string]:  React.RefObject<any>},
         data: GameState, 
         values: { [key: string]: any }
     ): void {
-        console.log("Handle win event")
-        console.log(">>>>>>>>>values: ", values)
-        console.log(">>>>>>>>>data: ", data)
-        const setBoard = setValues['setBoard']
-        const setStatus = setValues['setStatus']
-        const setGameEnded = setValues['setGameEnded']
-        const setWinnerPositions = setValues['setWinnerPositions']
+        const boardRef = setValues['boardRef']
+        const statusRef = setValues['statusRef']
+        const gameEndedRef = setValues['gameEndedRef']
+        const winnerPositionsRef = setValues['winnerPositionsRef']
 
-        setBoard(data.board);
-        setStatus(data.winner === values['playerSymbol'] ? '¡Ganaste!' : 'Perdiste');
-        setGameEnded(true);
-        if (data.positions) setWinnerPositions(data.positions);
+        boardRef.current = data.board
+        statusRef.current = data.winner === values['playerSymbol'] ? '¡Ganaste!' : 'Perdiste';
+        gameEndedRef.current = true;
+        if (data.positions) winnerPositionsRef.current = data.positions;
     }
 }

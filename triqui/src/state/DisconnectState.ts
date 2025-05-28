@@ -2,14 +2,12 @@ import { State } from "./State";
 
 export class DisconnecState extends State {
     public handleEvent(
-        setValues: { [key: string]:  React.Dispatch<React.SetStateAction<any>>},
+        setValues: { [key: string]:  React.RefObject<any>},
     ): void {
-        console.log("Handle disconnect event")
+        const statusRef = setValues['statusRef']
+        const gameEndedRef = setValues['gameEndedRef']
 
-        const setStatus = setValues['setStatus']
-        const setGameEnded = setValues['setGameEnded']
-
-        setStatus('El oponente se desconectó. ¿Reiniciar partida?');
-        setGameEnded(true);
+        statusRef.current = 'El oponente se desconectó. ¿Reiniciar partida?';
+        gameEndedRef.current = true;
     }
 }

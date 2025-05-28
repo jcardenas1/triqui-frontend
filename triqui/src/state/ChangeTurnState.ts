@@ -3,18 +3,16 @@ import { State } from "./State";
 
 export class ChangeTurnState extends State {
     public handleEvent(
-        setValues: { [key: string]:  React.Dispatch<React.SetStateAction<any>>}, 
+        setValues: { [key: string]:  React.RefObject<any>}, 
         data: GameState, 
         values: { [key: string]: any }
     ): void {
-        console.log("Handle change turn event")
+        const boardRef = setValues['boardRef']
+        const currentTurnRef = setValues['currentTurnRef']
+        const statusRef = setValues['statusRef']
 
-        const setBoard = setValues['setBoard']
-        const setCurrentTurn = setValues['setCurrentTurn']
-        const setStatus = setValues['setStatus']
-
-        setBoard(data.board);
-        setCurrentTurn(data.turn ?? null);
-        setStatus(data.turn === values['playerSymbol'] ? 'Tu turno' : 'Turno del oponente');
+        boardRef.current = data.board;
+        currentTurnRef.current = data.turn ?? null;
+        statusRef.current = data.turn === values['playerSymbol'] ? 'Tu turno' : 'Turno del oponente';
     }
 }

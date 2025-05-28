@@ -23,7 +23,7 @@ export class Context {
      * The Context delegates part of its behavior to the current Product object.
      */
     public request(
-        setValues: { [key: string]:  React.Dispatch<React.SetStateAction<any>>}, 
+        setValues: { [key: string]:  React.RefObject<any>}, 
         data?: GameState, 
         values?: {[key: string]: any}
     ): void {

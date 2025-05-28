@@ -1,5 +1,6 @@
 export interface Move {
-  type: 'move';
+  game_id: string;
+  player_id: string;
   position: [number, number];
 }
 
@@ -10,6 +11,7 @@ export interface GameState {
   symbol?: 'X' | 'O';
   winner?: 'X' | 'O';
   positions?: [number, number][];
+  game_id: number
 }
 
 export interface BoardProps {
