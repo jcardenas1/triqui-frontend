@@ -3,16 +3,14 @@ import { State } from "./State";
 
 export class WaitState extends State {
     public handleEvent(
-        setValues: { [key: string]:  React.Dispatch<React.SetStateAction<any>>},
+        setValues: { [key: string]:  React.RefObject<any>},
         data: GameState, 
     ): void {
-        console.log("Handle wait event")
-        console.log(">>>>>>>>>>>>>>DATA: ", data)
-        const setPlayerSymbol = setValues['setPlayerSymbol']
-        const setStatus = setValues['setStatus']
+        const playerSymbolRef = setValues['playerSymbolRef']
+        const statusRef = setValues['statusRef']
 
-        setPlayerSymbol(data.turn ?? null);
-        setStatus('Esperando a otro jugador...');
+        playerSymbolRef.current = data.turn ?? null;
+        statusRef.current = 'Esperando a otro jugador...';
 
     }
 }
