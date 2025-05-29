@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: juanc/frontendtriqui:v0.1
+    image: jcardenas35/frontendtriqui:v0.1
     build:
       context: ./triqui
       dockerfile: ./Dockerfile
